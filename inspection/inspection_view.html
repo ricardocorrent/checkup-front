@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkup</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg ">
+    <div class="container">
+        <a class="navbar-brand" href="#"><h1>CHECKUP</h1></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../user_.html"><h3>User</h3></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../target_.html"><h3>Target</h3></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="../rules_.html"><h3>Rules</h3></a>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../inspection_.html"><h3>Inspection</h3></a>
+                </li>
+                <li class="nav-item">
+                    <a id="logout" class="nav-link" href="../index.html"><h3>Logout</h3></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 py-2">
+            <div class="card card-body h-100 text-center align-center">
+                <h2 id="title">Inspection at UTFPR</h2>
+                <h3 id="description"></h3>
+                <section id="information">
+                    <h3>Information</h3>
+                    <div class="swipeProjet">
+                        <div class="innerProjet">
+
+                        </div>
+
+                    </div>
+                    <h6>Note:</h6>
+                    <textarea id="info-text" class="col-md-12"></textarea>
+
+                </section>
+
+
+                <section id="target">
+                    <h3>Target</h3>
+
+                    <div class="swipeProjet">
+                        <div class="innerProjet">
+
+                        </div>
+                    </div>
+                </section>
+
+                <section id="user">
+                    <h3>User</h3>
+
+                    <div class="swipeProjet">
+                        <div class="innerProjet">
+
+                        </div>
+                    </div>
+                </section>
+
+                <section id="topic">
+                    <h3>Topic</h3>
+
+                    <div class="swipeProjet topic">
+                        <div class="innerProjet topic">
+
+                        </div>
+                    </div>
+                </section>
+                <section id="updateAll">
+                    <div class="innerProject">
+                        <button class="btn btn-primary updateInspection"
+                                style="margin-left: 50%;transform: translatEX(-50%);">Update Inspection
+                        </button>
+                    </div>
+                </section>
+                <section>
+                    <button class="btn btn-primary print" style="margin-left: 50%;transform: translatEX(-50%);">Genarate
+                        PDF
+                    </button>
+                </section>
+
+
+            </div>
+        </div>
+        <div class="requestResult">
+            <div class="errorMsg">
+                <div class="topError">
+                    <i class="fas fa-times xMark"></i>
+                    <span class="errorStatus">Erro</span>
+                    <div class="errorButtons">
+                        <i class="fas fa-times closeError"></i>
+                        <i class="fas fa-chevron-down openCloseError"></i>
+                    </div>
+                </div>
+                <pre class="botError"></pre>
+            </div>
+            <div class="successMsg">
+                <i class="fas fa-check checkMark"></i>
+                <span>Request Successful</span>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Images</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <section id="image-modal">
+
+                            <div class="swipeProjet forTopic">
+                                <div class="innerProjet forTopic">
+                                    <div id="#modal-img" class="content">
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="file" id="image-up">
+                        <textarea id="setNote" placeholder="Note"></textarea>
+                        <input type="submit" class="btn btn-primary upload">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"
+        integrity="sha512-gYUM+7JjtBqPPGOgwgOZ+NwjGl+11/EP124oB+ihjlBpLgP5LTh7R/Iwcdy//cgH+QzrjspBiJI5iUegTNww3w=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"
+        integrity="sha512-vv3EN6dNaQeEWDcxrKPFYSFba/kgm//IUnvLPMPadaUf5+ylZyx4cKxuc4HdBf0PPAlM7560DV63ZcolRJFPqA=="
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+<script src="../js/main.js"></script>
+<script src="../js/inspec_view.js"></script>
+<script>
+    if (!localStorage.getItem("token")) {
+        window.location.replace("../index.html");
+
+    }
+    $("#logout").click(function () {
+        localStorage.clear();
+    });
+
+
+</script>
+</html>
