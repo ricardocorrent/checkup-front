@@ -1,5 +1,5 @@
 
-  $(document).ready(function () {    
+  $(document).ready(function () {
 
     $(".createUser").mousedown(function(){
       var userName =  document.getElementsByClassName("userNameInput")[0].value.trim();
@@ -23,7 +23,7 @@
         });
         return 0;
       }
-      if(pass == ""){
+      if(pass === ""){
         openError({
           status: "Empty",
           responseJSON: {
@@ -50,7 +50,7 @@
         headers: {
           "Content-Type": "application/json"
         },
-        success: function (data){  
+        success: function (data){
           $("#load-login").css("display", "none");
           openSuccess();
           setTimeout(function(){
@@ -71,7 +71,7 @@
 
 
     //Request Response code
-  
+
   $(".closeError").mousedown(function(){
     closeError();
   });
@@ -94,18 +94,18 @@
     if(errorExpand){
       $(".errorMsg").css("height", "75px");
       $(".openCloseError").css("transform", "rotateZ(0deg)")
-      errorExpand = false;  
+      errorExpand = false;
     } else {
       $(".errorMsg").css("height", "280px");
       $(".openCloseError").css("transform", "rotateZ(180deg)")
-      errorExpand = true;      
+      errorExpand = true;
     }
   }
   function closeError(){
     $(".errorMsg").css("height", "75px");
     $(".errorMsg").css("left", "-350px");
     $(".openCloseError").css("transform", "rotateZ(0deg)")
-    errorExpand = false; 
+    errorExpand = false;
   }
   //End of Response Code
 

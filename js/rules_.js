@@ -24,7 +24,7 @@ $(document).ready(function () {
         }
   });
 
- 
+
 
   //Criar uma nova Rule
   $("#addMore").on("click", function(){
@@ -65,38 +65,26 @@ $(document).ready(function () {
         });
     }
   });
-  
+
   //Criar um elemento de rule
   function createRule(item, index){
 
     var tableBody = document.getElementsByTagName("tbody")[0];
-    
+
     var newElement = document.createElement("tr");
     newElement.setAttribute("id", index);
-    
+
 
     var tableTD = document.createElement("td");
 
     var tdDiv = document.createElement("div");
     tdDiv.setAttribute("class", "row");
-   
-   /* var rowDiv1 = document.createElement("div");
-    rowDiv1.setAttribute("class", "col-2");
-    
-  var divSpan = document.createElement("span");
-    if(item.active){
-      divSpan.setAttribute("class", "fa fa-check-circle fa-lg");
-      divSpan.style.color = "darkgreen";
-    } else {
-      divSpan.setAttribute("class", "fa fa-times-circle fa-lg");
-      divSpan.style.color = "red";
-    }*/
 
     var rowDiv2 = document.createElement("div");
     rowDiv2.setAttribute("class", "col-12");
     rowDiv2.innerHTML = item.title;
 
-    
+
     var tableTD2 = document.createElement("td");
     var tdDiv2 = document.createElement("div");
     tdDiv2.setAttribute("class", "row");
@@ -124,7 +112,7 @@ $(document).ready(function () {
     var aSpan3 = document.createElement("span");
     aSpan3.setAttribute("class", "fas fa-minus-circle fa-lg delete");
     aSpan3.setAttribute("id",item.id);
-    
+
 
     tdA.appendChild(aSpan);
     tableTD3.appendChild(tdA);
@@ -135,8 +123,6 @@ $(document).ready(function () {
     tdA3.appendChild(aSpan3);
     tableTD5.appendChild(tdA3);
 
-  //  rowDiv1.appendChild(divSpan);
-    //tdDiv.appendChild(rowDiv1);
     tdDiv.appendChild(rowDiv2);
 
     tdDiv2.appendChild(rowDiv3);
@@ -182,7 +168,7 @@ $(document).ready(function () {
   });
 
   //Request Response code
-  
+
   $(".closeError").mousedown(function(){
     closeError();
   });
@@ -205,19 +191,19 @@ $(document).ready(function () {
     if(errorExpand){
       $(".errorMsg").css("height", "75px");
       $(".openCloseError").css("transform", "rotateZ(0deg)")
-      errorExpand = false;  
+      errorExpand = false;
     } else {
       $(".errorMsg").css("height", "280px");
       $(".openCloseError").css("transform", "rotateZ(180deg)")
-      errorExpand = true;      
+      errorExpand = true;
     }
   }
   function closeError(){
     $(".errorMsg").css("height", "75px");
     $(".errorMsg").css("left", "-350px");
     $(".openCloseError").css("transform", "rotateZ(0deg)")
-    errorExpand = false; 
+    errorExpand = false;
   }
   //End of Response Code
 
-}); 
+});

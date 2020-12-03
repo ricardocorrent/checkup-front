@@ -24,7 +24,7 @@ $(document).ready(function () {
         openError(xhr);
       }
   });
-  
+
   //Adicionar nova target
   $("#addMore").on("click", function(){
     var content = document.getElementById("index").value.trim();
@@ -61,15 +61,15 @@ $(document).ready(function () {
       });
     }
   });
-  
+
   //Funcao para criar cada target
   function createTarget(item){
 
     var tableBody = document.getElementsByTagName("tbody")[0];
-    
+
     var newElement = document.createElement("tr");
     newElement.setAttribute("id", amount);
-    
+
 
     var tableTD = document.createElement("td");
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     var tableTD2 = document.createElement("td");
     var tdA = document.createElement("a");
-    tdA.setAttribute("href", "edit_.html?id=" + item.id + "&type=target&name=" + item.name);
+    tdA.setAttribute("href", "./edit_.html?id=" + item.id + "&type=target&name=" + item.name);
     var aSpan = document.createElement("span");
     aSpan.setAttribute("class", "fa fa-edit fa-lg");
 
@@ -104,8 +104,6 @@ $(document).ready(function () {
     var aSpan1 = document.createElement("span");
     aSpan1.setAttribute("class", "fas fa-minus-circle fa-lg delete");
     aSpan1.setAttribute("id",item.id);
-    
-    
 
     tdA.appendChild(aSpan);
     tableTD2.appendChild(tdA);
@@ -120,7 +118,7 @@ $(document).ready(function () {
     tableTD.appendChild(tdDiv);
 
     newElement.appendChild(tableTD);
-    newElement.appendChild(tableTD2); 
+    newElement.appendChild(tableTD2);
     newElement.appendChild(tableTD3);
 
     var more = document.getElementById("more");
@@ -132,7 +130,7 @@ $(document).ready(function () {
     //Delete Target
     $("tbody").on("click", ".delete", function(data) {
       var targetId = data.target.id;
-  
+
       $.ajax({
         url: "http://localhost:8083/api/target/" + targetId,
         type: 'DELETE',
@@ -159,7 +157,7 @@ $(document).ready(function () {
 
 
   //Request Response code
-  
+
   $(".closeError").mousedown(function(){
     closeError();
   });
@@ -182,19 +180,19 @@ $(document).ready(function () {
     if(errorExpand){
       $(".errorMsg").css("height", "75px");
       $(".openCloseError").css("transform", "rotateZ(0deg)")
-      errorExpand = false;  
+      errorExpand = false;
     } else {
       $(".errorMsg").css("height", "280px");
       $(".openCloseError").css("transform", "rotateZ(180deg)")
-      errorExpand = true;      
+      errorExpand = true;
     }
   }
   function closeError(){
     $(".errorMsg").css("height", "75px");
     $(".errorMsg").css("left", "-350px");
     $(".openCloseError").css("transform", "rotateZ(0deg)")
-    errorExpand = false; 
+    errorExpand = false;
   }
   //End of Response Code
 
-  }); 
+  });

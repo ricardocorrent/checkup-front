@@ -13,13 +13,9 @@
 <body>
 <div class="wrapper fadeInDown">
     <div id="formContent">
-        <!-- Tabs Titles -->
-
         <!-- Icon -->
         <div class="fadeIn first">
             <h1 class="title">Checkup</h1>
-
-
         </div>
 
         <!-- Login Form -->
@@ -27,15 +23,15 @@
             <input type="text" id="user" class="fadeIn second" name="user" placeholder="username">
             <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
             <input id="login" type="button" class="fadeIn fourth" value="Sign in">
-
         </form>
+
         <div id="load-login" class="spinner-border" role="status">
         </div>
-        <!-- Remind Passowrd -->
+
+        <!-- Create User -->
         <div id="formFooter">
             <a class="underlineHover newUser" href="#">Sign up</a>
         </div>
-
     </div>
 </div>
 
@@ -62,12 +58,12 @@
     });
     $(".newUser").click(function (e) {
         e.preventDefault();
-        window.location.replace("createUser.html");
+        window.location.replace("./user/createUser.html");
     });
 
     function doLogin() {
-        var user = $('#user').val();
-        var pass = $('#password').val();
+        let user = $('#user').val();
+        let pass = $('#password').val();
         $("#load-login").css("display", "inline-block");
         $.ajax({
             url: "http://localhost:8083/auth/signin",
@@ -77,13 +73,11 @@
             dataType: "json",
             success: function (data) {
                 localStorage.setItem("token", data.token);
-                //window.open("menu.html?token="+data.token);
-                window.location.replace("target_.html");
-
+                window.location.replace("./target_.html");
             },
             error: function () {
                 $("#load-login").css("display", "none");
-                alert("User or Password incorrect");
+                alert("Username or Password incorrect");
             }
         });
     }
