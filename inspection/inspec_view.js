@@ -320,7 +320,7 @@ $(document).ready(function () {
         }
         dd.content[dd.content.length - 1].text.push({text: '\n\n\n\n'});
 
-        pdfMake.createPdf(dd).download();
+        pdfMake.createPdf(dd).open()
     }
 
 //FIM CRIAR PDF
