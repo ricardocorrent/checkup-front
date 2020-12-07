@@ -88,7 +88,7 @@ $(document).ready(function () {
                     closeSuccess();
                 }, 2000);
                 setTimeout(function () {
-                    location.replace("../inspection_.html");
+                    location.replace("./inspection_.html");
                 }, 2700);
             },
             error: function (xhr, status, error) {
