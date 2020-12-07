@@ -29,7 +29,6 @@ $(document).ready(function () {
 
         var more = document.getElementById("more");
         tableBody.insertBefore(newElement, more);
-
     });
 
     var id = getUrlParameter('id');
