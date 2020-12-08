@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
 //Active true ou off
     $(document).on("click", "article", function (e) {
 
@@ -20,7 +19,6 @@ $(document).ready(function () {
     });
 
     var currentInfo;
-
 
 //Mudar o estado do Active
     function changeActiveState(elemId) {
@@ -212,7 +210,7 @@ $(document).ready(function () {
             text: []
         });
 
-        //Information
+        // inspection information
         for (var i = 0; i < data.information.length; i++) {
             dd.content[0].text.push(
                 {
@@ -222,7 +220,11 @@ $(document).ready(function () {
                 data.information[i].description + '\n',
             );
         }
-        dd.content[0].text.push({text: '\n\n\n\n'});
+
+        dd.content[0].text.push({text: '\n\n'});
+
+        // inspection note
+        dd.content[0].text.push({text: data.note + '\n\n\n'});
 
         //Target Title
         dd.content.push({
@@ -269,20 +271,25 @@ $(document).ready(function () {
                 }
             });
 
-            //Itens
+            // Items
             for (var j = 0; j < data.rules[i].items.length; j++) {
                 dd.content.push({
-                    text: '\n' + data.rules[i].items[j].title + ' - ' + data.rules[i].items[j].description,
+                    text: '\n' + data.rules[i].items[j].title + ' - ' + data.rules[i].items[j].description + '\n',
                     alignment: 'justify'
                 });
 
-                if (data.rules[i].items[j].files)
-                    for (var k = 0; k < data.rules[i].items[j].files.length; k++) {
+                dd.content.push({
+                    text: '\n' + data.rules[i].items[j].note + '\n\n',
+                    alignment: 'left'
+                });
+
+                if (data.rules[i].items[j].files) {
+                    for (let k = 0; k < data.rules[i].items[j].files.length; k++) {
                         if (data.rules[i].items[j].files[k].active) {
 
                             dd.content.push({
                                 image: data.rules[i].items[j].files[k].imageData,
-                                width: 250,
+                                width: 300,
                                 alignment: 'center'
                             });
 
@@ -292,7 +299,7 @@ $(document).ready(function () {
                             });
                         }
                     }
-
+                }
             }
         }
 
@@ -302,8 +309,7 @@ $(document).ready(function () {
                 {
                     text: '\n\n' + data.user.fullName + '\n\n',
                     fontSize: 13,
-                    bold: true,
-                    decoration: 'underline'
+                    bold: true
                 }
             ]
         });
@@ -322,12 +328,19 @@ $(document).ready(function () {
 
         pdfMake.createPdf(dd).open()
     }
+// FIM CRIAR PDF
 
-//FIM CRIAR PDF
-
-//Atualiza o objeto ao digitar
+// Atualiza o objeto ao digitar
     $('#info-text').on('input', function () {
         currentInfo.note = $("#info-text").val().trim();
+    });
+
+   $('#inspectionTitle').on('input', function () {
+       currentInfo.title = $("#inspectionTitle").val().trim();
+   });
+
+    $('#inspectionDescription').on('input', function () {
+        currentInfo.description = $("#inspectionDescription").val().trim();
     });
 
     $(document).on("input", ".topicNote", function () {
@@ -561,7 +574,6 @@ $(document).ready(function () {
 
             $("#image-modal div.content").append(artic);
             $("#" + item.id + " textarea").val(item.note);
-
         }
     }
 
@@ -573,11 +585,7 @@ $(document).ready(function () {
         } else {
             artic = ' <article id="' + item.id + '" class="col-md-2" data-toggle="tooltip" data-placement="top" title="' + item.description + '"><h5>' + item.title + '</h5></article>';
         }
-
-
         $("#information div.innerProjet").append(artic);
-
-
     }
 
     function createTarget(item) {
@@ -586,11 +594,7 @@ $(document).ready(function () {
         } else {
             var artic = ' <article id="' + item.id + '" class="col-md-2" data-toggle="tooltip" data-placement="top" title="' + item.description + '"><h5>' + item.title + '</h5></article>';
         }
-
-
         $("#target div.innerProjet").append(artic);
-
-
     }
 
     function createUser(item) {
@@ -599,11 +603,7 @@ $(document).ready(function () {
         } else {
             var artic = ' <article id="' + item.id + '" class="col-md-2" data-toggle="tooltip" data-placement="top" title="' + item.description + '"><h5>' + item.title + '</h5></article>';
         }
-
-
         $("#user div.innerProjet").append(artic);
-
-
     }
 
     function createTopic(topic, index) {
@@ -614,11 +614,8 @@ $(document).ready(function () {
             var artic = ' <article id="' + topic.id + '" class="col-md-4 "><div class="col-md-12 invcol"><h5>' + topic.item.rule.title + '</h5><h6>' + topic.item.title + ' - ' + topic.item.description + ' </h6></div><div class="col-md-12 invcol"><h6 style="text-align: left;">Note:</h6><textarea position=' + index + ' class="topicNote">' + topic.note + '</textarea><button id="' + topic.id + '" type="button" class="btn btn-primary send" data-toggle="modal" data-target="#exampleModal"> Images</button></div></article>';
         }
 
-
         $("#topic div.innerProjet").append(artic);
         $("#topic div.innerProjet").addClass("forTopic")
-
-
     }
 
 
@@ -632,23 +629,20 @@ $(document).ready(function () {
         success: function (data) {
             currentInfo = data;
             console.log(data);
-            $("#title").text(data.title);
-            $("#description").text(data.description);
+            document.getElementsByClassName("inspectionTitle")[0].value = data.title;
+            document.getElementsByClassName("inspectionDescription")[0].value = data.description;
             data.information.forEach(createInfo);
             $("#info-text").text(data.note);
+            $("#info-target").text(data.target.name)
             data.target.information.forEach(createTarget);
             data.user.information.forEach(createUser);
             data.topics.forEach(createTopic);
             save_topic = data.topics;
-
         }
-
-
     });
 
 
     //Fechar Modal
-
     $(".close").on("click", function () { //função apagar modal dando mts erros
         const myNode = document.getElementById("#modal-img");
         myNode.textContent = '';
@@ -662,10 +656,7 @@ $(document).ready(function () {
         const myNode = document.getElementById("#modal-img");
         myNode.textContent = '';
     });
-
     //Fim Fechar Modal
-
-
 });
 
 
@@ -676,7 +667,6 @@ var i;
 
 
 //Request Response code
-
 $(".closeError").mousedown(function () {
     closeError();
 });
